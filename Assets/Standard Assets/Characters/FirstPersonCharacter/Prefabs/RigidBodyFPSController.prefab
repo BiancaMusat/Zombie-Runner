@@ -182,7 +182,6 @@ GameObject:
   - component: {fileID: 11400004}
   - component: {fileID: 4548703272286266973}
   - component: {fileID: 5487826314284001448}
-  - component: {fileID: 539027977}
   - component: {fileID: 539027972}
   m_Layer: 0
   m_Name: RigidBodyFPSController
@@ -331,23 +330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverCanvas: {fileID: 0}
---- !u!114 &539027977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61bc205b14d99094a856f464afd0a779, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 2000000}
-  zoomedOutFOV: 60
-  zoomedInFOV: 30
-  zoomedOutSensitivity: 2
-  zoomedInSensitivity: 0.5
 --- !u!114 &539027972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,6 +352,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3619711909321213868}
+  - component: {fileID: 5630776916719450408}
   m_Layer: 0
   m_Name: Weapons
   m_TagString: Untagged
@@ -394,6 +377,19 @@ Transform:
   m_Father: {fileID: 400000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5630776916719450408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 91942138870265478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c5290c826e7aa42a6b1899276c5c1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeapon: 0
 --- !u!114 &1349798849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,11 +403,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FPCamera: {fileID: 2000000}
-  range: 100
+  range: 40
   damage: 10
   muzzleFlash: {fileID: 887767905221855823}
   hitEffect: {fileID: 1505505054459977152, guid: 19455d92f73d66842bd94595296fccdc, type: 3}
   ammoSlot: {fileID: 539027972}
+  timeBetweenShots: 0.5
+--- !u!114 &3286425020611785994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5829849469311919364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bc205b14d99094a856f464afd0a779, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 2000000}
+  fpsController: {fileID: 11400004}
+  zoomedOutFOV: 60
+  zoomedInFOV: 30
+  zoomedOutSensitivity: 2
+  zoomedInSensitivity: 0.5
 --- !u!1001 &193040867
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -611,6 +626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 2337074158997199750, guid: 42f3447942dc7b3409a308b2d4a0e218, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42f3447942dc7b3409a308b2d4a0e218, type: 3}
 --- !u!4 &7188980325623785839 stripped
@@ -679,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2337074158997199750, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2337074158999389510, guid: ada2587319194f542957a8c2ae277cb9, type: 3}
       propertyPath: m_Materials.Array.data[0]
