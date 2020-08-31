@@ -12,16 +12,23 @@ public class EnemyAI : MonoBehaviour
     NavMeshAgent navMeshAgent;
     float distanceToTarget = Mathf.Infinity;
     bool isProvoked = false;
+    EnemyHealth health;
 
     // Start is called before the first frame update
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+        health = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (health.IsDead())
+        {
+            enabled = false;
+            navMeshAgent.enabled = false;
+        }
         distanceToTarget = Vector3.Distance(target.position, transform.position);
         if (isProvoked)
         {
@@ -63,13 +70,11 @@ public class EnemyAI : MonoBehaviour
         GetComponent<Animator>().SetBool("attack", true);
     }
 
-    private void FaceTarget() // not working for some reason
+    private void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;
-        //print(transform.rotation);
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed); // sferical interpolation
-        //print(direction + " " + lookRotation + " " + transform.rotation);
     }
 
     private void OnDrawGizmosSelected()
